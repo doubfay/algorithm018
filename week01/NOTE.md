@@ -36,7 +36,7 @@ Queue 中提供的方法如下：
   </tr>
 </table>
 
-以双端队列 `ArrayDeque.java` 中的实现为例进行分析  
+以双端队列 `ArrayDeque.java` 中的实现为例进行分析
 队列的特性是 FIFO 先进先出，只在队列尾部入队，只在队列头部出队  
 所以用双端队列实现 Queue 的时候，`add/offer` 操作都是用 `addLast` 来实现；`remove/poll/peek` 操作用 `pollFirst/peekFirst` 实现；
 ```java
