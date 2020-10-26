@@ -1,4 +1,5 @@
-package com.algorithm018;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 283 移动零
@@ -38,5 +39,10 @@ public class MoveZeros {
                 j++;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        MoveZeros solution = new MoveZeros();
+        solution.moveZeroes(new int[]{0, 1, 0, 3, 12});
     }
 }

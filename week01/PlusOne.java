@@ -1,5 +1,3 @@
-package com.algorithm018;
-
 /**
  * 66. 加一
  */

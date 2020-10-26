@@ -1,5 +1,3 @@
-package com.algorithm018;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 
