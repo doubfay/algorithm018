@@ -1,7 +1,5 @@
 # 学习笔记
 
-[toc]
-
 ## 数据结构与算法脑图
 
 [链接](https://mubu.com/doc/pouvgOY3B0)
