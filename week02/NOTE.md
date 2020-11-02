@@ -107,19 +107,157 @@ public class HashMap<K,V> {
 **链表是特殊的树**
 **树是特殊的图**
 
-### 树的遍历
+### 二叉树
+
+二叉树节点的代码实现：
+
+```java
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode() {}
+    
+    TreeNode(int val) {
+        this.val = val;
+    }
+    
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+```
+
+### 二叉搜索树
+
+1. 空树
+2. 根节点的值大于左子树上<span color="orange">**所有节点**</span>的值，根节点的值小于右子树上<span color="orange">**所有节点**</span>的值；且所有的子树都满足这个特点，都是二叉搜索树；
+
+**二叉搜索树的中序遍历的结果，是一个升序序列**
+
+### 树的递归遍历
 
 * 先序遍历：根 - 左 - 右
+```java
+public void preorder(TreeNode root, List<Integer> result) {
+    if (root == null) {
+        return;
+    }
+    result.add(root.val);
+    preorder(root.left);
+    preorder(root.right);
+}
+```
 * 中序遍历：左 - 根 - 右
+```java
+public void inorder(TreeNode root, List<Integer> result) {
+    if (root == null) {
+        return;
+    }
+    inorder(root.left);
+    result.add(root.val);
+    inorder(root.right);
+}
+```
 * 后序遍历：左 - 右 - 根
+```java
+public void postorder(TreeNode root, List<Integer> result) {
+    if (root == null) {
+        return;
+    }
+    postorder(root.left);
+    postorder(root.right);
+    result.add(root.val);
+}
+```
 
 ### 树的遍历为什么使用递归的方式
 
 树的结构不太方便遍历，只能通过递归的方式，对树的子节点做相同的访问操作，这里的访问操作就是一个重复的操作，且树的每个节点结构都是一样的，天然就适合使用递归的方式；
 
+### 树的迭代遍历
+
 除了递归之外，还可以使用迭代的方式对树进行遍历，比如：
-* 使用栈来进行深度优先搜索；
-* 使用队列来进行广度优先搜索；
+* 使用栈来进行先序/中序/后续/深度优先遍历；
+* 使用队列来进行广度优先遍历；
+
+先序遍历：根 - 左 - 右
+```java
+
+```
+
+中序遍历：左 - 根 - 右
+```java
+/**
+ * 迭代，使用栈，手动模拟递归
+ * Time: O(n) n 为树的节点数
+ * Space: O(h) h 为树的深度，一般情况是 O(log n)；最坏情况，树退化成链表，空间复杂度为 O(n)
+ */
+public List<Integer> inorderTraversal2(TreeNode root) {
+    if (root == null) {
+        return new ArrayList<>(0);
+    }
+    List<Integer> result = new ArrayList<Integer>();
+    Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
+    // 指针指向根节点
+    TreeNode curr = root;
+    // 当节点不为空，或栈中元素不为空时，说明还有节点没有访问，继续遍历
+    while (curr != null || !stack.isEmpty()) {
+        // 将根节点和左子节点存入栈中，循环中，只要能一直找到左子节点，就一直存入
+        while (curr != null) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+        // 当前节点为空，说明上一个遍历到的节点是这一部分遍历的最后一个节点，弹出栈顶元素，指针指向该节点
+        curr = stack.pop();
+        // 访问节点
+        result.add(curr.val);
+        // 此时该节点和它的左子节点，都已经被访问，指针指向右子节点
+        curr = curr.right;
+    }
+    return result;
+}
+
+/**
+ * 迭代，使用栈，手动模拟递归
+ * Time: O(n) n 为树的节点数
+ * Space: O(h) h 为树的深度，一般情况是 O(log n)；最坏情况，树退化成链表，空间复杂度为 O(n)
+ */
+public List<Integer> inorderTraversal3(TreeNode root) {
+    if (root == null) {
+        return new ArrayList<>(0);
+    }
+    List<Integer> result = new ArrayList<Integer>();
+    Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
+    // 指针指向根节点
+    TreeNode curr = root;
+    // 当节点不为空，或栈中元素不为空时，说明还有节点没有访问，继续遍历
+    while (curr != null || !stack.isEmpty()) {
+        if (curr != null) {
+            // 如果当前节点不为空时，当前节点可以视为根节点，将根节点先存入栈中，待左子树遍历完后再访问
+            stack.push(curr);
+            // 指针指向左子节点，循环中，只要一直能找到左子节点，就会一直将节点存入栈中
+            curr = curr.left;
+        } else {
+            // 如果当前节点为空，说明上一个遍历到的节点是这一部分遍历的最后一个节点，弹出栈顶元素，指针指向该节点
+            curr = stack.pop();
+            // 访问节点
+            result.add(curr.val);
+            // 此时该节点和它的左子节点，都已经被访问，指针指向右子节点
+            curr = curr.right;
+        }
+    }
+    return result;
+}
+```
+
+后序遍历：左 - 右 - 根
+```java
+
+```
 
 ## 堆、二叉堆
 
