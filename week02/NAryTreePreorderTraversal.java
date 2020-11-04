@@ -27,9 +27,6 @@ public class NAryTreePreorderTraversal {
      * Space: O(h) 取决于递归栈的深度，这里等于树的深度；一般情况是 O(log n)；最坏情况，树退化成链表，空间复杂度为 O(n)
      */
     public List<Integer> preorder(Node root) {
-        if (root == null) {
-            return new ArrayList<>(0);
-        }
         List<Integer> result = new ArrayList<>();
         traversal(root, result);
         return result;

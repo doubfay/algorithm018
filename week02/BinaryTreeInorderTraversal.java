@@ -32,11 +32,8 @@ public class BinaryTreeInorderTraversal {
      * Space: O(h) 取决于递归栈的深度，这里等于树的深度；一般情况是 O(log n)；最坏情况，树退化成链表，空间复杂度为 O(n)
      */
     public List<Integer> inorderTraversal(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<>(0);
-        }
         List<Integer> result = new ArrayList<Integer>();
-        // 遍历
+        // 中序遍历
         traversal(root, result);
         return result;
     }
@@ -47,15 +44,11 @@ public class BinaryTreeInorderTraversal {
             return;
         }
         // 先遍历左子树
-        if (root.left != null) {
-            traversal(root.left, result);
-        }
+        traversal(root.left, result);
         // 访问根节点
         result.add(root.val);
         // 最后遍历右子树
-        if (root.right != null) {
-            traversal(root.right, result);
-        }
+        traversal(root.right, result);
     }
 
     /**
@@ -64,9 +57,6 @@ public class BinaryTreeInorderTraversal {
      * Space: O(h) h 为树的深度，一般情况是 O(log n)；最坏情况，树退化成链表，空间复杂度为 O(n)
      */
     public List<Integer> inorderTraversal2(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<>(0);
-        }
         List<Integer> result = new ArrayList<Integer>();
         Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
         // 指针指向根节点
@@ -94,9 +84,6 @@ public class BinaryTreeInorderTraversal {
      * Space: O(h) h 为树的深度，一般情况是 O(log n)；最坏情况，树退化成链表，空间复杂度为 O(n)
      */
     public List<Integer> inorderTraversal3(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<>(0);
-        }
         List<Integer> result = new ArrayList<Integer>();
         Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
         // 指针指向根节点
