@@ -1,5 +1,7 @@
 # 学习笔记
 
+[TOC]
+
 ## 数据结构与算法脑图
 
 [链接](https://mubu.com/doc/pouvgOY3B0)
@@ -12,31 +14,17 @@
 Queue 以接口的方式实现，具体的实现方式有多种
 
 Queue 中提供的方法如下：
-  <tr>
-    <td></td>
-    <td ALIGN=CENTER><em>Throws exception</em></td>
-    <td ALIGN=CENTER><em>Returns special value</em></td>
-  </tr>
-  <tr>
-    <td><b>Insert</b></td>
-    <td>add(e)</td>
-    <td>offer(e)</td>
-  </tr>
-  <tr>
-    <td><b>Remove</b></td>
-    <td>remove()</td>
-    <td>poll()</td>
-  </tr>
-  <tr>
-    <td><b>Examine</b></td>
-    <td>element()</td>
-    <td>peek()</td>
-  </tr>
-</table>
 
-以双端队列 `ArrayDeque.java` 中的实现为例进行分析
+|                | **Throws exception** | **Returns special value** |
+| -------------- | :------------------: | :-----------------------: |
+| <b>Insert</b>  |        add(e)        |         offer(e)          |
+| <b>Remove</b>  |       remove()       |          poll()           |
+| <b>Examine</b> |      element()       |          peek()           |
+
+以双端队列 `ArrayDeque.java` 中的实现为例进行分析。
 队列的特性是 FIFO 先进先出，只在队列尾部入队，只在队列头部出队  
 所以用双端队列实现 Queue 的时候，`add/offer` 操作都是用 `addLast` 来实现；`remove/poll/peek` 操作用 `pollFirst/peekFirst` 实现；
+
 ```java
 // add 方法在队列的尾部新增数据，调用了 addLast 方法
 public boolean add(E e) {
